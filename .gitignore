@@ -1,0 +1,9 @@
+# Dependency caches
+/node_modules
+
+# Hidden system files
+.DS_Store
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
