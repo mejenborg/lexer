@@ -1,0 +1,22 @@
+{
+  "name": "lexer",
+  "version": "1.0.0",
+  "description": "A simple TypeScript lexer",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mejenborg/lexer.git"
+  },
+  "author": "Kasper M. Sørensen <kasper@mejenborg.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mejenborg/lexer/issues"
+  },
+  "homepage": "https://github.com/mejenborg/lexer#readme",
+  "devDependencies": {
+    "typescript": "^3.9.6"
+  }
+}
