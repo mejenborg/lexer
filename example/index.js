@@ -1,5 +1,4 @@
 const { Lexer } = require('../dist/lexer');
-const { Delimiter } = require('../dist/delimiter');
 
 let lexer = new Lexer(' Lorem Ipsum', [' ']);
 
