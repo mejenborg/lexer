@@ -28,6 +28,5 @@ tokens[2]; // (whitespace)
 tokens[3]; // Ipsum
 ```
 
-##
 # License
 MIT
