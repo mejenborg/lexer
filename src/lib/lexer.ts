@@ -33,7 +33,7 @@ export class Lexer {
 	 * @param {number} no       Number of tokens to consume
 	 * @return {IToken} Last consumed token
 	 */
-	consume(no=1): IToken {
+	consume(no: number = 1): IToken {
 
 		let token: string;
 		let tokenIndex: number;
@@ -67,7 +67,7 @@ export class Lexer {
 	 * @param {number} no       Number of token to lookahead
 	 * @return {IToken} Token
 	 */
-	lookahead(no=1): IToken {
+	lookahead(no: number = 1): IToken {
 
 		const index = this._index;
 		const token = this.consume(no);
