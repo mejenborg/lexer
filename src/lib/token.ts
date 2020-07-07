@@ -6,7 +6,7 @@ export interface CIToken {
 	/**
 	 * @constructor
 	 */
-	new (value: string|null, index: number, delimiter: Delimiter): IToken;
+	new (value: string|null, index: number, delimiter?: Delimiter): IToken;
 }
 
 
