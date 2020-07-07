@@ -1,4 +1,4 @@
-import { Token, TokenInterface } from './token';
+import { Token, IToken } from './token';
 
 export class Delimiter {
 	

@@ -1,16 +1,16 @@
 import { Delimiter } from './delimiter';
 
 
-export interface TokenConstructor {
+export interface CIToken {
 
 	/**
 	 * @constructor
 	 */
-	new (value: string|null, index: number, delimiter: Delimiter): TokenInterface;
+	new (value: string|null, index: number, delimiter: Delimiter): IToken;
 }
 
 
-export interface TokenInterface {
+export interface IToken {
 
 	/**
 	 * Value of the token
@@ -29,7 +29,7 @@ export interface TokenInterface {
 }
 
 
-export const Token: TokenConstructor = class Token implements TokenInterface {
+export const Token: CIToken = class Token implements IToken {
 
 	private readonly _value: string|null;
 	private readonly _index: number;

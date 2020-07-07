@@ -1,5 +1,5 @@
 import { Delimiter } from './delimiter';
-import { Token, TokenInterface } from './token';
+import { Token, IToken } from './token';
 
 export class Lexer {
 
@@ -31,9 +31,9 @@ export class Lexer {
 	 * Consume and return token
 	 *
 	 * @param {number} no       Number of tokens to consume
-	 * @return {TokenInterface} Last consumed token
+	 * @return {IToken} Last consumed token
 	 */
-	consume(no=1): TokenInterface {
+	consume(no=1): IToken {
 
 		let token: string;
 		let tokenIndex: number;
@@ -65,9 +65,9 @@ export class Lexer {
 	 * Get the token without consuming it
 	 *
 	 * @param {number} no       Number of token to lookahead
-	 * @return {TokenInterface} Token
+	 * @return {IToken} Token
 	 */
-	lookahead(no=1): TokenInterface {
+	lookahead(no=1): IToken {
 
 		const index = this._index;
 		const token = this.consume(no);
@@ -80,12 +80,12 @@ export class Lexer {
 	/**
 	 * Tokenize the source into list of tokens
 	 *
-	 * @return {TokenInterface[]}
+	 * @return {IToken[]}
 	 */
-	tokenize(): TokenInterface[] {
+	tokenize(): IToken[] {
 
-		const tokens: TokenInterface[] = [];
-		let token: TokenInterface;
+		const tokens: IToken[] = [];
+		let token: IToken;
 
 		while ((token = this.consume()).value) {
 			tokens.push(token);
