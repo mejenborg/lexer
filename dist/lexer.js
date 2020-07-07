@@ -36,9 +36,24 @@ var Lexer = (function () {
             token = null;
         return new token_1.Token(token, tokenIndex, delimiter);
     };
-    Lexer.prototype.lookahead = function () {
+    Lexer.prototype.lookahead = function (no) {
+        if (no === void 0) { no = 1; }
+        var index = this._index;
+        var token = this.consume(no);
+        this._index = index;
+        return token;
     };
-    Lexer.prototype.identifyToken = function () {
+    Lexer.prototype.tokenize = function () {
+        var tokens = [];
+        var token;
+        while ((token = this.consume()).value) {
+            tokens.push(token);
+        }
+        if (tokens.length > 0)
+            return tokens;
+    };
+    Lexer.prototype.reset = function () {
+        this._index = 0;
     };
     return Lexer;
 }());

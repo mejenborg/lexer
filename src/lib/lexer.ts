@@ -19,7 +19,7 @@ export class Lexer {
 		});
 	}
 
-	consume(no=1): TokenInterface|void {
+	consume(no=1): TokenInterface {
 
 		let token: string;
 		let tokenIndex: number;
@@ -33,7 +33,7 @@ export class Lexer {
 			search: while(this._index < this._string.length) {
 				token += this._string.substr(this._index++, 1);
 
-				let delimiters = this._delimiters.filter((delimiter: Delimiter): boolean => delimiter.delimiter === token || delimiter.delimiter === this._string.substr(this._index, delimiter.delimiter.length));
+				const delimiters = this._delimiters.filter((delimiter: Delimiter): boolean => delimiter.delimiter === token || delimiter.delimiter === this._string.substr(this._index, delimiter.delimiter.length));
 
 				if (delimiters.length > 0) {
 					delimiter = delimiters[0];
@@ -47,11 +47,29 @@ export class Lexer {
 		return new Token(token, tokenIndex, delimiter);
 	}
 
-	lookahead() {
+	lookahead(no=1): TokenInterface {
 
+		const index = this._index;
+		const token = this.consume(no);
+
+		this._index = index;
+
+		return token;
 	}
 
-	identifyToken() {
+	tokenize(): TokenInterface[] {
 
+		const tokens: TokenInterface[] = [];
+		let token: TokenInterface;
+
+		while ((token = this.consume()).value) {
+			tokens.push(token);
+		}
+
+		if (tokens.length>0) return tokens;
+	}
+
+	reset(): void {
+		this._index = 0;
 	}
 }
