@@ -6,6 +6,9 @@ export class Delimiter {
 	// private readonly _type: string;
 	// private readonly _class: string;
 
+	/**
+	 * @constructor
+	 */
 	constructor(delimiter: string/*, type: string, class: string*/) {
 
 		this._delimiter = delimiter
@@ -14,10 +17,21 @@ export class Delimiter {
 		// this._class = class;
 	}
 
+	/**
+	 * Get delimiter
+	 *
+	 * @return {string}
+	 */
 	get delimiter(): string {
 		return this._delimiter;
 	}
 
+	/**
+	 * Test delimiter against string
+	 *
+	 * @param {string} string Test string
+	 * @return {boolean}
+	 */
 	test(string: string): boolean {
 		return string === this._delimiter;
 	}

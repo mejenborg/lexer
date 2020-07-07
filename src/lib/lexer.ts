@@ -7,18 +7,32 @@ export class Lexer {
 	private _delimiters: Delimiter[];
 	private _index: number;
 
-	constructor(string: string, delimiters: any[]) {
+	/**
+	 * @constructor
+	 */
+	constructor(string: string, delimiters: (Delimiter|string)[]) {
 		this._string = string;
 		this.setDelimiters(delimiters);
 		this._index = 0;
 	} 
 
-	setDelimiters(delimiters: any[]) {
-		this._delimiters = delimiters.map((delimiter: any): Delimiter => {
-			return delimiter instanceof Delimiter ? delimiter : new Delimiter(delimiter)
+	/**
+	 * Set list of delimiters
+	 *
+	 * @param {(Delimiter|string)[]} delimiters
+	 */
+	setDelimiters(delimiters: (Delimiter|string)[]) {
+		this._delimiters = delimiters.map((delimiter: Delimiter|string): Delimiter => {
+			return delimiter instanceof Delimiter ? delimiter : new Delimiter(delimiter);
 		});
 	}
 
+	/**
+	 * Consume and return token
+	 *
+	 * @param {number} no       Number of tokens to consume
+	 * @return {TokenInterface} Last consumed token
+	 */
 	consume(no=1): TokenInterface {
 
 		let token: string;
@@ -33,7 +47,7 @@ export class Lexer {
 			search: while(this._index < this._string.length) {
 				token += this._string.substr(this._index++, 1);
 
-				const delimiters = this._delimiters.filter((delimiter: Delimiter): boolean => delimiter.delimiter === token || delimiter.delimiter === this._string.substr(this._index, delimiter.delimiter.length));
+				const delimiters = this._delimiters.filter((delimiter: Delimiter): boolean => delimiter.test(token) || delimiter.test(this._string.substr(this._index, delimiter.delimiter.length)));
 
 				if (delimiters.length > 0) {
 					delimiter = delimiters[0];
@@ -47,6 +61,12 @@ export class Lexer {
 		return new Token(token, tokenIndex, delimiter);
 	}
 
+	/**
+	 * Get the token without consuming it
+	 *
+	 * @param {number} no       Number of token to lookahead
+	 * @return {TokenInterface} Token
+	 */
 	lookahead(no=1): TokenInterface {
 
 		const index = this._index;
@@ -57,6 +77,11 @@ export class Lexer {
 		return token;
 	}
 
+	/**
+	 * Tokenize the source into list of tokens
+	 *
+	 * @return {TokenInterface[]}
+	 */
 	tokenize(): TokenInterface[] {
 
 		const tokens: TokenInterface[] = [];
@@ -69,6 +94,9 @@ export class Lexer {
 		if (tokens.length>0) return tokens;
 	}
 
+	/**
+	 * Reset index back to beginning
+	 */
 	reset(): void {
 		this._index = 0;
 	}

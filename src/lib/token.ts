@@ -3,6 +3,9 @@ import { Delimiter } from './delimiter';
 
 export interface TokenConstructor {
 
+	/**
+	 * @constructor
+	 */
 	new (value: string|null, index: number, delimiter: Delimiter): TokenInterface;
 }
 
@@ -32,6 +35,9 @@ export const Token: TokenConstructor = class Token implements TokenInterface {
 	private readonly _index: number;
 	private readonly _delimiter: Delimiter;
 
+	/**
+	 * @constructor
+	 */
 	constructor(value: string|null, index: number, delimiter?: Delimiter) {
 		this._value = value;
 		this._index = index;

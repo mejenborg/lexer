@@ -25,7 +25,7 @@ var Lexer = (function () {
             tokenIndex = this._index;
             search: while (this._index < this._string.length) {
                 token += this._string.substr(this._index++, 1);
-                var delimiters = this._delimiters.filter(function (delimiter) { return delimiter.delimiter === token || delimiter.delimiter === _this._string.substr(_this._index, delimiter.delimiter.length); });
+                var delimiters = this._delimiters.filter(function (delimiter) { return delimiter.test(token) || delimiter.test(_this._string.substr(_this._index, delimiter.delimiter.length)); });
                 if (delimiters.length > 0) {
                     delimiter = delimiters[0];
                     break search;
