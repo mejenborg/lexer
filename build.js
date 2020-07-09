@@ -8,8 +8,18 @@ const tsconfig = require(tsconfigFile);
 const outDir = tsconfig.compilerOptions.outDir;
 
 try {
+    
     // Remove current build
-    fs.readdirSync(outDir).map(file => fs.unlinkSync(path.join(outDir, file)));
+    (function recursiveRemove(dir) {
+        fs.readdirSync(dir, {withFileTypes:true}).map(file => {
+            if (file.isDirectory()) {
+                recursiveRemove(path.join(dir, file.name));
+                fs.rmdirSync(path.join(dir, file.name));
+            } else {
+                fs.unlinkSync(path.join(dir, file.name));
+            }
+        });
+    })(outDir);
 
     // Compile new build
     const proc = childProcess.exec(`tsc --build ${tsconfigFile}`);
