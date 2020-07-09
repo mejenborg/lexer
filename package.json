@@ -2,9 +2,13 @@
   "name": "lexer",
   "version": "1.0.0",
   "description": "A simple TypeScript lexer",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "tsc --project . --module commonjs --outDir dist/cjs --declaration true --declarationDir dist/types",
+    "build:es": "tsc --project . --module es6 --outDir dist/es"
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,6 @@
   "homepage": "https://github.com/mejenborg/lexer#readme",
   "devDependencies": {
     "typescript": "^3.9.6"
-  }
+  },
+  "dependencies": {}
 }
