@@ -1,5 +1,5 @@
 {
-  "name": "lexer",
+  "name": "@mejenborg/lexer",
   "version": "1.0.0",
   "description": "A simple TypeScript lexer",
   "main": "dist/cjs/index.js",
@@ -15,6 +15,12 @@
     "url": "git+https://github.com/mejenborg/lexer.git"
   },
   "author": "Kasper M. Sørensen <kasper@mejenborg.com>",
+  "maintainers": [
+    {
+      "email": "kasper@mejenborg.com",
+      "name": "Kasper M. Sørensen"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mejenborg/lexer/issues"
