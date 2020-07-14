@@ -6,6 +6,7 @@
   "module": "dist/es/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
+    "prepublish": "build",
     "build": "npm run build:cjs && npm run build:es",
     "build:cjs": "tsc --project . --module commonjs --outDir dist/cjs --declaration true --declarationDir dist/types",
     "build:es": "tsc --project . --module es6 --outDir dist/es"
