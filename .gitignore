@@ -1,5 +1,6 @@
 # Dependency caches
 /node_modules
+/dist
 
 # Hidden system files
 .DS_Store
